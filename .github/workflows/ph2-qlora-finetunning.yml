@@ -31,4 +31,4 @@ jobs:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: |
           cd src/ph2-qlora-finetunning
-          python train-in-git.py
+          python train-in-git-qlora.py
