@@ -12,11 +12,11 @@ build/
 develop-eggs/
 dist/
 downloads/
-outputs/
 eggs/
 .eggs/
 lib/
 lib64/
+outputs/
 parts/
 sdist/
 var/
