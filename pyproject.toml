@@ -7,6 +7,8 @@ requires-python = ">=3.12"
 dependencies = [
     # Core ML
     "torch>=2.9.0",
+    "tensorflow>=2.15.0",
+    "tqdm>4.66", #used for showing progress bar.
 
     # Hugging Face ecosystem
     "transformers>=4.57.3",
@@ -23,6 +25,12 @@ dependencies = [
 
     # Utilities
     "python-dotenv>=1.0.1",
+
+    "huggingface_hub",
+    "transformers",
+    "tokenizers",
+    "accelerate",
+    "sentencepiece",
 ]
 
 [dependency-groups]

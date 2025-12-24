@@ -13,6 +13,9 @@ develop-eggs/
 dist/
 downloads/
 outputs/
+models/
+checkpoints/
+gpt2_models/
 eggs/
 .eggs/
 lib/
