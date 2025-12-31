@@ -3,7 +3,7 @@ title: Tweet Sentiment Analyzer
 emoji: 📝
 colorFrom: blue
 colorTo: green
-sdk: Docker
+sdk: docker
 app_file: app.py
 pinned: true
 ---
