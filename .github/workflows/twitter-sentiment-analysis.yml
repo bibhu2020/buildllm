@@ -4,7 +4,7 @@ env:
   PROJECT_PATH: inferences/twitter-sentiment-analysis
   HF_TOKEN: ${{ secrets.HF_TOKEN }}
   HF_USERNAME: ${{ secrets.HF_USERNAME }}
-  HF_SPACE_NAME: chatbot-app
+  HF_SPACE_NAME: twitter-sentiment-analysis
   REPO_ID: ${{ secrets.HF_USERNAME }}/twitter-sentiment-analysis
 
 on:
