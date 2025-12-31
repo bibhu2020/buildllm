@@ -1,40 +1,29 @@
-# --- Base image ---
-FROM python:3.10-slim
+FROM python:3.12-slim
 
-# --- Environment variables ---
-ENV PYTHONDONTWRITEBYTECODE=1
-ENV PYTHONUNBUFFERED=1
+ENV PYTHONUNBUFFERED=1 \
+    DEBIAN_FRONTEND=noninteractive \
+    PYTHONPATH=/app:/app/common:$PYTHONPATH
 
-# Hugging Face cache (persist across restarts)
-ENV TRANSFORMERS_CACHE=/app/model_cache
-ENV HF_HOME=/app/model_cache
-ENV HF_DATASETS_CACHE=/app/model_cache
-ENV HF_METRICS_CACHE=/app/model_cache
-
-# Virtual environment path
-ENV VENV_PATH=/app/.venv
-ENV PATH="/app/.venv/bin:$PATH"
-
-# --- Set working directory ---
 WORKDIR /app
 
-# --- Install system dependencies ---
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends \
-        git \
-        curl \
-        build-essential \
-        ca-certificates \
+# System deps
+RUN apt-get update && apt-get install -y \
+    git build-essential curl \
     && rm -rf /var/lib/apt/lists/*
 
-# --- Install uv (official installer, NOT pip) ---
+# Install uv
 RUN curl -LsSf https://astral.sh/uv/install.sh | sh
+ENV PATH="/root/.local/bin:$PATH"
 
-# --- Copy project files ---
-COPY . /app
+# Copy project metadata
+COPY app.py .
+COPY pyproject.toml .
+COPY uv.lock .
 
-# --- Create .venv and install dependencies from pyproject.toml ---
-RUN uv sync --venv /app/.venv
+
+# Install dependencies using uv, then export and install with pip to system
+RUN uv sync --frozen --no-dev && \
+    uv pip install -e . --system
 
 # --- Pre-download model to speed up startup ---
 RUN python - <<EOF
