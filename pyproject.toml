@@ -33,6 +33,7 @@ dependencies = [
     "sentencepiece",
     "PyMuPDF",
     "tf-keras",
+    "streamlit",
 ]
 
 [dependency-groups]
