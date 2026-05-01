@@ -7,10 +7,10 @@ import tiktoken
 # so add the repository `src` directory to `sys.path` to allow absolute imports.
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
-from core.dataloader import create_dataloader_v1
-from core.attention import MultiHeadAttention
-from core.model import GPTModel
-from core.text_generator import generate_text_simple
+from src.llm.gpt2.core.dataloader import create_dataloader_v1
+from src.llm.gpt2.core.attention import MultiHeadAttention
+from src.llm.gpt2.core.model import GPTModel
+from src.llm.gpt2.core.text_generator import generate_text_simple
 import torch.nn as nn
 
 tokenizer = tiktoken.get_encoding("gpt2")
